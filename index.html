@@ -38,7 +38,6 @@ for(i=3;i<arrLen;i++){
 
 newArr0 = Arr1[0].slice(arrGetNum,arrStart);
 newArr1 = Arr1[1].slice(arrGetNum,arrStart);
-// console.log(Arr1[0].slice(-5,8));
 
 var ctx = document.getElementById("myLineChart");
 var myLineChart = new Chart(ctx, {
@@ -55,6 +54,7 @@ var myLineChart = new Chart(ctx, {
 		],
 	},
 	options: {
+	  animation: false,
 		title: {
 			display: false,
 			text: ''
