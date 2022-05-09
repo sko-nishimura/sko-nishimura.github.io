@@ -5,7 +5,7 @@ var app = new Vue({
   },
   created: function () {
     var _this = this;
-    axios.get('https://umusample.microcms.io/api/v1/news', { headers: { "X-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
+    axios.get('https://umusample.microcms.io/api/v1/news', { headers: { "X-MICROCMS-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
     .then(response => { this.contents = response.data.contents; })
     .catch(error => {
       window.alert(error);
@@ -13,13 +13,16 @@ var app = new Vue({
   }
 });
 
+const param = location.search;
+const paramText = param.replace('?','');
+console.log(paramText);
 var app2 = new Vue({
   el: "#single-content",
   data: {
     contents: [],
   },
   created: function () {
-    axios.get('https://umusample.microcms.io/api/v1/news', { headers: { "X-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
+    axios.get('https://umusample.microcms.io/api/v1/news', { headers: { "X-MICROCMS-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
     .then(response => { this.contents = response.data.contents; })
     .catch(error => {
       window.alert(error);

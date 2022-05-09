@@ -8,9 +8,14 @@
 </head>
 <body>
 <div id="single-content">
-<h1>{{contents[0]["title"]}}</h1>
-<!-- <div><img v-bind:src="contents[0]['thumbnail']['url']" alt=""></div> -->
-<div v-html="contents[0]['content']"></div>
+  <div class="newsList">
+    <div class="newsList__item" v-for="(item,index) in contents">
+      <a v-bind:href="'./single/?link='+item.link">
+      <h2>{{item.title}}</h2>
+      <div v-html="item.contents"></div>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
