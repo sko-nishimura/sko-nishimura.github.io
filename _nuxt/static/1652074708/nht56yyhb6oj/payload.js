@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/nht56yyhb6oj", (function(a){return {data:[{id:"nht56yyhb6oj",createdAt:a,updatedAt:a,publishedAt:a,revisedAt:a,title:"テスト記事",contents:"\u003Cp\u003Eテストテストテストテストテストテストテスト\u003Cbr\u003Eテストテストテストテストテストテストテストテスト\u003Cbr\u003Eテストテストテストテストテストテストテストテスト\u003C\u002Fp\u003E"}],fetch:{},mutations:void 0}}("2022-05-06T09:42:50.547Z")));

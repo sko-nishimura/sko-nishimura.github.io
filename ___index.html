@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+input.number{
+	pointer-events: none;
+}
+
+#myLineChart{
+	width: 80%;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="count">
+	<div class="buttons">
+		<button type="button" data-count="+1">+</button>
+		<button type="button" data-count="-1">-</button>
+	</div>
+	<input type="number" class="number" name="" id="" max="10" min="3" value="3">
+</div>
+
+<canvas id="myLineChart"></canvas>
+
+<input type="range" name="" id="range" style="width:100%" list="tickmarks">
+<datalist id="tickmarks">
+</datalist>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<script>
+
+var Arr1 = [
+	['7/1','7/2','7/3','7/4','7/5','7/6','7/7','7/8','7/9','7/10'],
+	[25,26,24,27,29,30,28,31,32,29]
+]
+const arrLen = Arr1[0].length;
+var maxVal = Math.max(...Arr1[1]);
+var arrStart = 10;
+var arrNum = 3;
+var arrGetNum = -1 * arrNum + (arrStart - arrLen);
+for(i=3;i<arrLen;i++){
+	$('#tickmarks').append('<option value="'+i+'" label="'+Arr1[0][i]+'"></option>')
+}
+
+var ctx = document.getElementById("myLineChart");
+function chartReset() {
+
+$('#range').attr('max',arrLen);
+$('#range').attr('min',arrNum);
+	
+var myLineChart = new Chart(ctx, {
+	type: 'line',
+	data: {
+		labels: Arr1[0].slice(arrGetNum,arrStart),
+		datasets: [
+			{
+				label: '気温（度）',
+				data: Arr1[1].slice(arrGetNum,arrStart),
+				borderColor: "rgba(255,0,0,1)",
+				backgroundColor: "rgba(0,0,0,0)"
+			}
+		],
+	},
+	options: {
+		animation: false,
+		title: {
+			display: false,
+			text: ''
+		},
+		scales: {
+			yAxes: [{
+				ticks: {
+					suggestedMax: (maxVal + 5),
+					suggestedMin: 0,
+					stepSize: 10,
+					callback: function(value, index, values){
+						return  value +  '度'
+					}
+				}
+			}]
+		},
+	}
+});
+
+}
+
+chartReset()
+
+$('#range').on('change',function(){
+	var rangeVal = $(this).val();
+	console.log(rangeVal);
+	arrStart = rangeVal;
+	arrGetNum = -1 * arrNum + (arrStart - arrLen);
+	chartReset()
+});
+
+$('.buttons').children('button').on('click',function(){
+	var countChange = $(this).data('count');
+	var currentCount = parseInt($('input.number').val());
+	if((countChange == '+1' && currentCount < '10') || (countChange == '-1' && currentCount > '3') ){
+	var countChangeNum = parseInt(countChange);
+		console.log(currentCount+countChangeNum)
+		$('input.number').val(currentCount+countChangeNum);
+		arrNum = currentCount+countChangeNum;
+		arrGetNum = -1 * arrNum + (arrStart - arrLen);
+	}else{
+		return false;
+	}
+
+	chartReset()
+})
+</script>
+	
+</body>
+</html>

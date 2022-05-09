@@ -1,124 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<style>
-input.number{
-	pointer-events: none;
-}
-
-#myLineChart{
-	width: 80%;
-}
-
-</style>
-</head>
-<body>
-
-
-<div class="count">
-	<div class="buttons">
-		<button type="button" data-count="+1">+</button>
-		<button type="button" data-count="-1">-</button>
-	</div>
-	<input type="number" class="number" name="" id="" max="10" min="3" value="3">
-</div>
-
-<canvas id="myLineChart"></canvas>
-
-<input type="range" name="" id="range" style="width:100%" list="tickmarks">
-<datalist id="tickmarks">
-</datalist>
-
-<script src="https://code.jquery.com/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-
-<script>
-
-var Arr1 = [
-	['7/1','7/2','7/3','7/4','7/5','7/6','7/7','7/8','7/9','7/10'],
-	[25,26,24,27,29,30,28,31,32,29]
-]
-const arrLen = Arr1[0].length;
-var maxVal = Math.max(...Arr1[1]);
-var arrStart = 10;
-var arrNum = 3;
-var arrGetNum = -1 * arrNum + (arrStart - arrLen);
-for(i=3;i<arrLen;i++){
-	$('#tickmarks').append('<option value="'+i+'" label="'+Arr1[0][i]+'"></option>')
-}
-
-var ctx = document.getElementById("myLineChart");
-function chartReset() {
-
-$('#range').attr('max',arrLen);
-$('#range').attr('min',arrNum);
-	
-var myLineChart = new Chart(ctx, {
-	type: 'line',
-	data: {
-		labels: Arr1[0].slice(arrGetNum,arrStart),
-		datasets: [
-			{
-				label: '気温（度）',
-				data: Arr1[1].slice(arrGetNum,arrStart),
-				borderColor: "rgba(255,0,0,1)",
-				backgroundColor: "rgba(0,0,0,0)"
-			}
-		],
-	},
-	options: {
-		animation: false,
-		title: {
-			display: false,
-			text: ''
-		},
-		scales: {
-			yAxes: [{
-				ticks: {
-					suggestedMax: (maxVal + 5),
-					suggestedMin: 0,
-					stepSize: 10,
-					callback: function(value, index, values){
-						return  value +  '度'
-					}
-				}
-			}]
-		},
-	}
-});
-
-}
-
-chartReset()
-
-$('#range').on('change',function(){
-	var rangeVal = $(this).val();
-	console.log(rangeVal);
-	arrStart = rangeVal;
-	arrGetNum = -1 * arrNum + (arrStart - arrLen);
-	chartReset()
-});
-
-$('.buttons').children('button').on('click',function(){
-	var countChange = $(this).data('count');
-	var currentCount = parseInt($('input.number').val());
-	if((countChange == '+1' && currentCount < '10') || (countChange == '-1' && currentCount > '3') ){
-	var countChangeNum = parseInt(countChange);
-		console.log(currentCount+countChangeNum)
-		$('input.number').val(currentCount+countChangeNum);
-		arrNum = currentCount+countChangeNum;
-		arrGetNum = -1 * arrNum + (arrStart - arrLen);
-	}else{
-		return false;
-	}
-
-	chartReset()
-})
-</script>
-	
-</body>
+<!doctype html>
+<html data-n-head-ssr lang="en" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>microcms-nuxt-jamstack-blog</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1"><meta data-n-head="ssr" data-hid="description" name="description" content=""><meta data-n-head="ssr" name="format-detection" content="telephone=no"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" href="/_nuxt/f734830.js" as="script"><link rel="preload" href="/_nuxt/ee23082.js" as="script"><link rel="preload" href="/_nuxt/9a41e91.js" as="script"><link rel="preload" href="/_nuxt/0ba0d75.js" as="script"><link rel="preload" href="/_nuxt/79bae94.js" as="script"><link rel="preload" href="/_nuxt/735adf9.js" as="script"><link rel="preload" href="/_nuxt/24604f6.js" as="script"><style data-vue-ssr-id="fa7ff0ca:0">.nuxt-progress{position:fixed;top:0;left:0;right:0;height:2px;width:0;opacity:1;transition:width .1s,opacity .4s;background-color:#000;z-index:999999}.nuxt-progress.nuxt-progress-notransition{transition:none}.nuxt-progress-failed{background-color:red}</style><link rel="preload" href="/_nuxt/static/1652074708/payload.js" as="script"><link rel="preload" href="/_nuxt/static/1652074708/manifest.js" as="script">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><ul><li><a href="/93zhv-1gd8p7">
+      二つ目の記事
+    </a></li><li><a href="/nht56yyhb6oj">
+      テスト記事
+    </a></li></ul></div></div><script>window.__NUXT__={staticAssetsBase:"/_nuxt/static/1652074708",layout:"default",error:null,serverRendered:!0,routePath:"/",config:{_app:{basePath:"/",assetsPath:"/_nuxt/",cdnURL:null}}}</script><script src="/_nuxt/f734830.js" defer></script><script src="/_nuxt/79bae94.js" defer></script><script src="/_nuxt/735adf9.js" defer></script><script src="/_nuxt/24604f6.js" defer></script><script src="/_nuxt/ee23082.js" defer></script><script src="/_nuxt/9a41e91.js" defer></script><script src="/_nuxt/0ba0d75.js" defer></script>
+  </body>
 </html>
