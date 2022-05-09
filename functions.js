@@ -14,7 +14,7 @@ var app = new Vue({
 });
 
 const param = location.search;
-const paramText = param.replace('?','');
+const paramText = param.replace('?link=','');
 console.log(paramText);
 var app2 = new Vue({
   el: "#single-content",
@@ -22,7 +22,7 @@ var app2 = new Vue({
     contents: [],
   },
   created: function () {
-    axios.get('https://umusample.microcms.io/api/v1/news', { headers: { "X-MICROCMS-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
+    axios.get('https://umusample.microcms.io/api/v1/news/'+param, { headers: { "X-MICROCMS-API-KEY": "4ae495e5286644a798116bf75130dae3f780" } })
     .then(response => { this.contents = response.data.contents; })
     .catch(error => {
       window.alert(error);

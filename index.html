@@ -17,7 +17,7 @@
 <div id="content">
   <div class="newsList">
     <div class="newsList__item" v-for="(item,index) in contents">
-      <a v-bind:href="'./single/?link='+item.link">
+      <a v-bind:href="'./single/?link='+item.id">
       <h2>{{item.title}}</h2>
       <div v-html="item.contents"></div>
       </a>
